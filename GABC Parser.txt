@@ -1,0 +1,159 @@
+final char[] cStaffpos = new char[]{'B','A','0','1','2','3','4','5','6','7','8','9','Z'};
+
+private int staffPosToInt(char in)
+{
+	int x = in;
+	if(x > 96 && x < 110) x += -99;
+	else x = -99;
+	return x;
+}
+
+private boolean rhombus(char in)
+{
+	boolean rhombus;
+	int x = in;
+	if(x > 64 && x < 78) rhombus = true;
+	else rhombus = false;
+	return true;
+}
+
+read in all staffPos
+
+1, 2      = podatus
+2, 1      = clivis
+2, 1, 2   = porrectus
+1, 2, 1   = connected puncti
+1, 2, 3   = punctum, podatus
+
+characters that separate sub-neumes
+! ' / . v x (Capital) (space) (same as prev)
+
+
+GABCNeume
+____________________________
++ GABCSubNeume[] subNeumes
+- String out
+- String in
++ int[] staffPos ???
+----------------------------
+GABCNeume(String)
+GABCSubNeume[] gABCToSubNeumes(String)
+String getOutput()
+String getInput()
+
+
+GABCNeume(String gabc)
+{
+	in = gabc;
+	out = "";
+	int[] staffPosTemp = new int[in.length()];
+	int index = 0
+	subNeumes = gABCToSubNeumes(in);
+	for(int k = 0: k < subNeumes.length(); k++)
+	{
+		out += subNeumes[k].getOutput();
+		for(int k2 = 0; k2 < subNeumes[k].staffPos.length; k2++)
+		{
+			staffPosTemp[index] = subNeumes[k].staffPos[k2];
+			index++;
+		}
+	}
+
+	// reassign final staffPos array
+	staffPos = new int[index]
+	for(int k = 0; k < index; k++) staffPos[k] = staffPosTemp[k];
+	
+}
+
+private GABCSubNeume[] gABCToSubNeumes(String in)
+{
+	String[] subData = in.length();
+	char[] data = in.toCharArray();
+	char cur, prev = '!';
+	boolean startNew = false;
+	int index = 0;
+	int k = 0;
+	while(k < data.length())
+	{
+		cur = data[k];
+		if(k > 0) prev = data[k - 1];
+		if(!rhombus(cur) && staffPosToInt(cur) == -99)
+		{
+			switch (cur) {
+			case: '!'
+			case: '\''
+			case: '/'
+			case: '.'
+			case: ' '
+			case: 'v'
+			case: 'x'
+				startNew = true;
+				break;
+			default:
+				break;
+			}
+
+		} else if(rhombus(cur)
+		{
+			startNew = true;
+			
+		} else if(staffPosToInt(cur) == staffPosToInt(prev))
+		{
+			startNew = true;	
+		}
+
+		if(startNew)
+		{
+			index++;
+			startNew = false;
+		}
+		subData[index] += cur;
+		k++;
+	}
+
+	GABCSubNeumes[] subNeumes = new GABCSubNeumes[index + 1];
+	for(int k = 0; k < index + 1; k++)
+	{
+		subNeumes[k] = new GABCSubNeume(subData[k]);
+	}
+
+	return subNeuems;	
+}
+
+
+GABCSubNeume
+____________________________
+- String out
+- String in ???
++ int[] staffPos
+----------------------------
+GABCSubNeume(String)
+String getOutput()
+String getInput()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

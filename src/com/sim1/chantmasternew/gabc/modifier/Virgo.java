@@ -1,18 +1,21 @@
 package com.sim1.chantmasternew.gabc.modifier;
 
 import com.sim1.chantmasternew.gabc.GModifier;
+import com.sim1.chantmasternew.gabc.GSubNeume;
 
 public class Virgo extends GModifier {
 	
-	Virgo(int posInSubNeume){
-		super.index = posInSubNeume;
-		super.type = GModifier.MEXGROUP1;
-		super.replacePunctum = true;
+	public Virgo(GSubNeume subNeumeToModify, int posInSubNeume){
+		subNeume = subNeumeToModify;
+		index = posInSubNeume;
+		type = Type.MEXGROUP1;
+		replacePunctum = true;
 	}
 	
 	
 	public String getOutput(){
-		String out = super.cStaffPos[super.index] + "v";
+		String out = GSubNeume.cStaff[subNeume.pos[index]] + "v";
 		return out;
 	}
+
 }

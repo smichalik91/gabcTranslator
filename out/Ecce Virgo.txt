@@ -1,1 +1,7 @@
-_7d_1p-_1p13X3p32X2p-__1p-_||_02P-_45P-_43C-_03X32R23X31C-_;_02P-_45P-7p-7p78X8p85X5p-_45P-_5p-_5p-_5p-6p67X7p75X5p-_5p-_|__67P-_54C-_65X65R56X6P-_45P-6p-_;_32C-_3p-_6p-5p56X6p65X5p-_54C-_;_3p34X4p42X2p-31C-_13P-45P-_3p-2n1n_1p-_||_
+name:Ecce Virgo;
+office-part:Communio;
+mode:1;
+book:Graduale O.P. (B2P), 1950, p. 23;
+transcriber:Andrew Hinkley;
+%%
+(7d) Ec(1p)ce(13P) Vir(34P)go(1p) (||) con(02P)cí(45P)pi(43C)et,(32C) (;) et(02P) pá(45P7p78P)ri(45P)et(5p) fí(5p)li(5p5p67P)um:(5p) (|) et(54C) vo(67P)cá(54C)bi(65C)tur(45P45P6v65C) (;) no(32C)men(3p) e(64C64C56P)jus(54C) (;) Em(34P31C)má(13P13P45P)nu(3v)el.(1p) (||)

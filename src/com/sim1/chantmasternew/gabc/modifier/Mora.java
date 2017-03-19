@@ -1,20 +1,21 @@
 package com.sim1.chantmasternew.gabc.modifier;
 
 import com.sim1.chantmasternew.gabc.GModifier;
+import com.sim1.chantmasternew.gabc.GSubNeume;
 
 public class Mora extends GModifier{
 
-	Mora(int posInSubNeume){
-		super.index = posInSubNeume;
-		super.type = GModifier.MEXGROUP2;
-		super.replacePunctum = false;
+	public Mora(GSubNeume subNeumeToModify, int posInSubNeume){
+		subNeume = subNeumeToModify;
+		index = posInSubNeume;
+		type = Type.MEXGROUP2;
+		replacePunctum = false;
 	}
 	
 	
 	public String getOutput(){
 		String out = "";
-		if(super.replacePunctum) out = super.cStaffPos[super.index] + "p";
-		out += super.cStaffPos[super.index] + ".";
+		out += GSubNeume.cStaff[subNeume.pos[index]] + ".";
 		return out;
 	}
 }

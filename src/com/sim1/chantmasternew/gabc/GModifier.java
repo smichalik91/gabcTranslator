@@ -32,17 +32,53 @@ public abstract class GModifier {
 	
 	
 	//  Assumptions for "sortModifiers": 
-	//   mutually exclusive (conflicting) modifiers will be eliminated (keep last instance)
+	//   mutually exclusive (conflicting) modifiers will be eliminated (keep first instance)
 	//   there will be no more than one modifier with (replacePunctum = true) per tone
 	//   the above mentioned modifier will be first of those of that tone
 	//   modifiers will be ordered as such, MEXGROUP1, MEXGROUP2, ADDON then by tone
 	public static ArrayList<GModifier> sortModifiers(GSubNeume in){
 		ArrayList<GModifier> list = new ArrayList<>();
 		GModifier temp = null;
-		for(int k = 0; k < in.modifiers.size(); k++){
-			temp = in.modifiers.get(k);
-			list.add(temp);
+		
+		// reorder modifiers by index
+		int p = 0;
+		while(list.size() < in.modifiers.size()){
+			for(int k = 0; k < in.modifiers.size(); k++){
+				temp = in.modifiers.get(k);
+				if(temp.index == p) list.add(temp);
+			}
+			p++;
 		}
+		
+		//mark conflicting mutually exclusive modifiers to remove
+		ArrayList<Integer> modsToRemove = new ArrayList<>();
+		int p2 = 0;
+		boolean hasGroup1 = false;
+		boolean hasGroup2 = false;
+		while(p2 < p){
+			for(int k = 0; k < list.size(); k++){
+				temp = list.get(k);
+				if(temp.index == p2 && temp.type == Type.MEXGROUP1){
+					if(!hasGroup1) hasGroup1 = true;
+					else modsToRemove.add(k);
+				}
+				if(temp.index == p2 && temp.type == Type.MEXGROUP2){
+					if(!hasGroup2) hasGroup2 = true;
+					else modsToRemove.add(k);
+				}
+			}
+			hasGroup1 = false;
+			hasGroup2 = false;
+			p2++;
+		}
+		
+		// remove conflicting modifiers from list
+		for(int k = modsToRemove.size() - 1; k >= 0 ; k--){
+			int indexToRemove = modsToRemove.get(k);
+			GModifier removed = list.remove(indexToRemove);
+			System.out.println("Modifier Removed: " + removed.getClass().toString());
+		}
+		
 		return list;
 	}
 }

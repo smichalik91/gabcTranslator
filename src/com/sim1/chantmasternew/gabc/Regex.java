@@ -25,18 +25,18 @@ public class Regex {
 	
 	
 	public static void main(String args[]){
-		boolean atWork = false;
+		boolean atWork = true;
 		
 		String inputFolderFilePath;
-		if(atWork) inputFolderFilePath = "C:\\Users\\smichalik\\Documents\\Eclipse\\GABC Test\\in\\";
+		if(atWork) inputFolderFilePath = "C:\\Users\\smichalik\\Documents\\Eclipse\\gabcTranslator\\in\\";
 		else inputFolderFilePath = "C:\\Users\\Simon\\Documents\\Project 1 Chant Master\\GABC\\in\\";
 				
 		String outputFolderFilePath;
-		if(atWork) outputFolderFilePath = "C:\\Users\\smichalik\\Documents\\Eclipse\\GABC Test\\outCae\\";
+		if(atWork) outputFolderFilePath = "C:\\Users\\smichalik\\Documents\\Eclipse\\gabcTranslator\\outCae\\";
 		else outputFolderFilePath = "C:\\Users\\Simon\\Documents\\Project 1 Chant Master\\GABC\\outCae\\";
 		
 		String outputFullFolderFilePath;
-		if(atWork) outputFullFolderFilePath = "C:\\Users\\smichalik\\Documents\\Eclipse\\GABC Test\\out\\";
+		if(atWork) outputFullFolderFilePath = "C:\\Users\\smichalik\\Documents\\Eclipse\\gabcTranslator\\out\\";
 		else outputFullFolderFilePath = "C:\\Users\\Simon\\Documents\\Project 1 Chant Master\\GABC\\out\\";
 		
 		File folder = new File(inputFolderFilePath);

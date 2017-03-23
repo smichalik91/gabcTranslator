@@ -129,14 +129,14 @@ public class Regex {
 								break;
 							case '.': // mora
 								mod = new Mora(sn, sn.pos.length - 1);
-								sn.setModifier(mod);
+								sn.addModifier(mod);
 								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								break;
 							case ' ':
 								break;
 							case 'v': // virgo
 								mod = new Virgo(sn, sn.pos.length - 1);
-								sn.setModifier(mod);
+								sn.addModifier(mod);
 								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								break;
 							case 'w':  // quilisma
@@ -168,7 +168,7 @@ public class Regex {
 							case '4':
 								if(couldBeClef) { // clef
 									mod = new Clef(sn, sn.pos.length - 1, cur);
-									sn.setModifier(mod);
+									sn.addModifier(mod);
 									GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								}
 								break;

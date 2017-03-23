@@ -19,7 +19,7 @@ public abstract class GSubNeume {
 	// array for converting integer staff position 0-12 to those used in Caeciliae
 	public static final String[] cStaff = new String[]{"B","A","0","1","2","3","4","5","6","7","8","9","Z"};
 		
-	public void setModifier(GModifier in){
+	public void addModifier(GModifier in){
 		modifiers.add(in);
 	}
 	

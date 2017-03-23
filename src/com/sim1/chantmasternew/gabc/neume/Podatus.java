@@ -33,7 +33,7 @@ public String getOutput(){
 			int i = 0;
 			GModifier mod = modifiers.get(i);
 			
-			// to fix wierd looking Podatus:
+			// to fix weird looking Podatus:
 			boolean hasReplacingMods = false;
 			for(int k = 0; k < modifiers.size(); k++) {
 				if(modifiers.get(k).replacePunctum) hasReplacingMods = true;

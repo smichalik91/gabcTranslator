@@ -11,6 +11,7 @@ public class Clef extends GModifier {
 		subNeume = subNeumeToModify;
 		index = posInSubNeume;
 		type = Type.MEXGROUP1;
+		super.setPriority();
 		replacePunctum = true;
 		clefNum = clefNumber;
 	}

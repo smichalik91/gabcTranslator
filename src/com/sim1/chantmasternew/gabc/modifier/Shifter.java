@@ -9,6 +9,7 @@ public class Shifter extends GModifier{
 		subNeume = subNeumeToModify;
 		index = posInSubNeume;
 		type = Type.SHIFTER;
+		super.setPriority();
 		replacePunctum = false;
 	}
 	

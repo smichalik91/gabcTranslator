@@ -9,6 +9,7 @@ public class Mora extends GModifier{
 		subNeume = subNeumeToModify;
 		index = posInSubNeume;
 		type = Type.MEXGROUP2;
+		super.setPriority();
 		replacePunctum = false;
 	}
 	

@@ -1,5 +1,7 @@
 package com.sim1.chantmasternew.gabc;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 
 import com.sim1.chantmasternew.gabc.GSubNeume.Name;
 
@@ -15,6 +17,9 @@ public abstract class GModifier {
 	// Type or Grouping helps indicate which modifiers are mutual exclusive
 	public Type type;
 	
+	//  This determines order of outputting modifiers
+	public int priority; 
+	
 	// subNeume to modify
 	public GSubNeume subNeume;	
 	//indicates index of tone within GSubNeume to which this modifier is applied
@@ -25,6 +30,19 @@ public abstract class GModifier {
 
 	
 	public abstract String getOutput();
+	
+	protected void setPriority(){
+		switch (type) {
+			case SHIFTER:
+				priority = 0;
+			case MEXGROUP1:
+				priority = 1;
+			case MEXGROUP2:
+				priority = 10;
+			case ADDON:
+				priority = 100;
+		}
+	}
 	
 	public void setSubNeume(GSubNeume in) {
 		subNeume = in;
@@ -82,6 +100,15 @@ public abstract class GModifier {
 			int indexToRemove = modsToRemove.get(k);
 			GModifier removed = list.remove(indexToRemove);
 			System.out.println("Modifier Removed: " + removed.getClass().toString());
+		}
+		
+		// sort by index then priority
+		Collections.sort(list, new GModifierComparator());
+		
+		Iterator<GModifier> itr = list.iterator();
+		while(itr.hasNext()){
+			GModifier m = (GModifier)itr.next();
+			System.out.println("Modifier: index: " + m.index + " Type: " + m.getClass().toString());
 		}
 		
 		return list;

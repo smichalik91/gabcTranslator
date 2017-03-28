@@ -21,6 +21,7 @@ public abstract class GSubNeume {
 		
 	public void addModifier(GModifier in){
 		modifiers.add(in);
+		System.out.println("Modifier added! - index: " + in.index + " Type: " + in.getClass().toString());
 	}
 	
 	public abstract String getOutput();

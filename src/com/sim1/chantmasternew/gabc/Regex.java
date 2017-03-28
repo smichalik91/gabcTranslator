@@ -99,12 +99,10 @@ public class Regex {
 					System.out.println(neumes.get(i).input);
 					sn = new Empty();
 					mod = null;
+					ArrayList<GModifier> tempMods = new ArrayList<GModifier>();
 					char[] data = neumes.get(i).input.toCharArray();
 					char cur, prev = '!';
-					boolean startNew = false;
-					boolean doublePunctuation = false;
 					boolean couldBeClef = false;
-					int index = 0;
 					int k = 0;
 					// assume the GSubNeume has been added. If adding modifier, recall from arraylist, modify, and put back
 					while(k < data.length) {
@@ -116,7 +114,6 @@ public class Regex {
 						{
 							switch (cur) {
 							case '!':
-								neumes.get(i).subNeumes.add(sn);
 								sn = new Empty();
 								break;
 							case ';':
@@ -145,7 +142,6 @@ public class Regex {
 								//GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								break;
 							case 'x': // flat
-								startNew = true;
 								break;
 							case 'o':
 								break;
@@ -190,10 +186,14 @@ public class Regex {
 								break;
 							case PUNCTUM:
 								if(pos > sn.pos[0]) {
+									tempMods = sn.modifiers;
 									sn = new Podatus(sn.pos[0], pos);
+									sn.modifiers = tempMods;
 									GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								} else if(pos < sn.pos[0]) {
+									tempMods = sn.modifiers;
 									sn = new Clivis(sn.pos[0], pos);
+									sn.modifiers = tempMods;
 									GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								} else {
 									sn = new Punctum(pos);

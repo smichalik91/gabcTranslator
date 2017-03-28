@@ -14,10 +14,10 @@ public class GNeume {
 	}
 	
 	public static void replaceLastInSubNeumes(ArrayList<GSubNeume> subNeumesList, GSubNeume replacingSubNeume) {
-		GSubNeume temp = subNeumesList.get(subNeumesList.size() - 1);
-		for(int k = 0; k < temp.modifiers.size(); k++) {
-			temp.modifiers.get(k).setSubNeume(replacingSubNeume);
-		}
+//		GSubNeume temp = subNeumesList.get(subNeumesList.size() - 1);
+//		for(int k = 0; k < temp.modifiers.size(); k++) {
+//			temp.modifiers.get(k).setSubNeume(replacingSubNeume);
+//		}
 		subNeumesList.set(subNeumesList.size() - 1, replacingSubNeume);
 	}
 

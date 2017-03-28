@@ -35,12 +35,20 @@ public abstract class GModifier {
 		switch (type) {
 			case SHIFTER:
 				priority = 0;
+				break;
 			case MEXGROUP1:
 				priority = 1;
+				break;
 			case MEXGROUP2:
 				priority = 10;
+				break;
 			case ADDON:
 				priority = 100;
+				break;
+			default:
+				priority = 999999;
+				break;
+					
 		}
 	}
 	
@@ -58,6 +66,8 @@ public abstract class GModifier {
 		ArrayList<GModifier> list = new ArrayList<>();
 		GModifier temp = null;
 		
+		System.out.println("# of Modifiers pre-sort: " + in.modifiers.size());
+		
 		// reorder modifiers by index
 		int p = 0;
 		while(list.size() < in.modifiers.size()){
@@ -67,7 +77,7 @@ public abstract class GModifier {
 			}
 			p++;
 		}
-		
+				
 		//mark conflicting mutually exclusive modifiers to remove
 		ArrayList<Integer> modsToRemove = new ArrayList<>();
 		int p2 = 0;
@@ -92,6 +102,7 @@ public abstract class GModifier {
 			}
 			hasGroup1 = false;
 			hasGroup2 = false;
+			hasGroup3 = false;
 			p2++;
 		}
 		
@@ -104,6 +115,8 @@ public abstract class GModifier {
 		
 		// sort by index then priority
 		Collections.sort(list, new GModifierComparator());
+		
+		System.out.println("# of Modifiers post sort: " + list.size());
 		
 		Iterator<GModifier> itr = list.iterator();
 		while(itr.hasNext()){

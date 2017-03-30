@@ -1,4 +1,5 @@
 ﻿name: Testing;
 %%
 (c4) Test(g.v) po(dv.e.qv)da(dg)tus(di) cli(id)vis(gd) vir(fvi)go(ivf) (::)
-dg(dg) dqg(dqg) d.qg.(d.qg.)
+dg(dg) dqg(dqg) d.qg.(d.qg.) de(de) dqe(dqe) dve(dve) d.ve.v(d.ve.v) (::)
+gd(gd) dqg(gqd) g.qd.(g.qd.) ed(ed) eqd(eqd) evd(evd) e.vd.v(e.vd.v) ee(ee) e.e(e.e)

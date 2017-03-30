@@ -26,7 +26,7 @@ public class GabcTranslator {
 	
 	
 	public static void main(String args[]){
-		boolean atWork = false;
+		boolean atWork = true;
 		
 		String inputFolderFilePath;
 		if(atWork) inputFolderFilePath = "C:\\Users\\smichalik\\Documents\\Eclipse\\gabcTranslator\\in\\";

@@ -19,7 +19,8 @@ public class Podatus extends GSubNeume {
 	}
 	
 public String getOutput(){
-		// With no modifiers
+	
+// --------------------- With NO Modifiers -------------------------
 		if(modifiers.size() == 0) {
 			if(pos[1] - pos[0] < 5) out = cStaff[pos[0]] + cStaff[pos[1]] + "P";
 			else {
@@ -29,7 +30,7 @@ public String getOutput(){
 			}
 		}
 		
-		// With modifiers
+// --------------------- WITH Modifiers -------------------------
 		else {
 			// Get play order of GModifiers
 			GModifier.sortModifiers(this);
@@ -39,7 +40,7 @@ public String getOutput(){
 			GModifier mod = modifiers.get(i);
 			System.out.println("Podatus: containsShifter? " + containsShifter[0]);
 			
-			// to fix weird looking Podatus:
+			// to fix weird looking Podatus (3p34X4P looks weird, 34P is preferred when possible:
 			// if none of the modifiers are 'replacePunctum' or SHIFTERs then follow the patter:
 			// "[staffPos1][staffPos2]P" plus outputs of modifiers
 			boolean hasReplacingMods = false;
@@ -55,10 +56,11 @@ public String getOutput(){
 			
 			// if there is a modifier that is a SHIFTER or 'replacePunctum'
 			else {
-				// First Tone:
+// --------------------- First Tone -------------------------
 				// If the first modifier is assigned to tone #2 or is not a replacePunctum,
-				// then add the "[staffPos]p" now, then add all modifiers' outputs
+				// then add the punctum glyph now...
 				if(mod.index != 0 || !mod.replacePunctum) out += cStaff[pos[0]] + "p";
+				// then add all modifiers' outputs
 				while(mod.index == 0){
 					out += mod.getOutput();
 					i++;
@@ -66,9 +68,9 @@ public String getOutput(){
 					else break;
 				}
 				
-				// Second Tone:
-				// if there are no modifiers on the second tone.
-				//  add the "...p" and be done
+// --------------------- Second Tone -------------------------
+				// if there are no modifiers on the second tone,
+				// add the "...p" and be done
 				if(mod.index == 0 || mod.index > 1) {
 					if(pos[1] - pos[0] > 1) out += cStaff[pos[0]] + cStaff[pos[1]] + "X";
 					out += cStaff[pos[1]];

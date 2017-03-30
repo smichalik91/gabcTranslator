@@ -20,6 +20,10 @@ public class Clivis extends GSubNeume{
 	}
 	
 	public String getOutput(){
+		
+		// Notes: Shifters do nothing to a clivis.
+		
+// --------------------- With NO Modifiers -------------------------
 		if(modifiers.size() == 0){
 			if(pos[0] - pos[1] < 5) out = cStaff[pos[0]] + cStaff[pos[1]] + "C";
 			else {
@@ -29,6 +33,8 @@ public class Clivis extends GSubNeume{
 				out += cStaff[pos[1]] + "p";
 			}
 		}
+		
+// --------------------- WITH Modifiers -------------------------
 		else {
 			// Get play order of GModifiers
 			GModifier.sortModifiers(this);
@@ -37,26 +43,33 @@ public class Clivis extends GSubNeume{
 			int i = 0;
 			GModifier mod = modifiers.get(i);
 			
-			// translate notation for first tone
+// --------------------- First Tone -------------------------
+			// If the first modifier is assigned to tone #2 or is not a replacePunctum,
+			// then add the punctum glyph now...
 			if(mod.index != 0 || !mod.replacePunctum){
 				out += cStaff[pos[0]] + cStaff[pos[1]] + "X"; 
 				out += cStaff[pos[0]] + "p";
 			}
-			while(i < modifiers.size() && (mod.index == 0)){
-				mod = modifiers.get(i);
+			// then add all modifiers' outputs
+			while(mod.index == 0){
 				out += mod.getOutput();
-				i++;				
+				i++;
+				if(i < modifiers.size()) mod = modifiers.get(i);
+				else break;
 			}
 			
-			// translate notation for second tone
+// --------------------- Second Tone -------------------------
+			// if mod is not a replacePunctum, add the punctum now...
 			if(mod.index != 1 || !mod.replacePunctum){
 				out += cStaff[pos[0]] + cStaff[pos[1]] + "X";
 				out += cStaff[pos[1]] + "p";
 			}
-			while(i < modifiers.size() && mod.index == 1){
-				mod = modifiers.get(i);
+			// then add all modifiers' outputs
+			while(mod.index == 1){
 				out += mod.getOutput();
-				i++;				
+				i++;
+				if(i < modifiers.size()) mod = modifiers.get(i);
+				else break;
 			}
 			
 		}

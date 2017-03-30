@@ -16,6 +16,7 @@ public class Clivis extends GSubNeume{
 		pos = new int[2];
 		pos[0] = staffpos1;
 		pos[1] = staffpos2;
+		containsShifter = new boolean[2];
 	}
 	
 	public String getOutput(){
@@ -30,7 +31,7 @@ public class Clivis extends GSubNeume{
 		}
 		else {
 			// Get play order of GModifiers
-			modifiers = GModifier.sortModifiers(this);
+			GModifier.sortModifiers(this);
 			
 			out = "";
 			int i = 0;

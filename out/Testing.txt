@@ -1,3 +1,4 @@
 ﻿name: Testing;
 %%
-(7d) Test(4v4.) po(1v1.2v2.)da(14P)tus(1p16X6P) cli(61X6p61X1p)vis(41C) vir(3v36X6P)go(6v63X3p) (||)
+(7d) Test(4v4.) po(1v1.--2v2.)da(14P)tus(1p16X6P) cli(61X6p61X1p)vis(41C) vir(3v--6p)go(6v--3p) (||)
+dg(14P) dqg(1p14X4p) d.qg.(1p1.14X4p4.)

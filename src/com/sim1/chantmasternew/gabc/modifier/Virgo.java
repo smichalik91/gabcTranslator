@@ -11,6 +11,7 @@ public class Virgo extends GModifier {
 		type = Type.MEXGROUP1;
 		super.setPriority();
 		replacePunctum = true;
+		subNeume.endSubNeumeHere = true;
 	}
 	
 	

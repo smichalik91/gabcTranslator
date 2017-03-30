@@ -13,6 +13,7 @@ public class Clef extends GModifier {
 		type = Type.MEXGROUP1;
 		super.setPriority();
 		replacePunctum = true;
+		subNeume.endSubNeumeHere = true;
 		clefNum = clefNumber;
 	}
 	

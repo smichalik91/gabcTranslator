@@ -16,7 +16,6 @@ public class Shifter extends GModifier{
 	
 	public String getOutput(){
 		String out = "";
-		out += GSubNeume.cStaff[subNeume.pos[index]] + ".";
 		return out;
 	}
 }

@@ -9,6 +9,7 @@ import java.util.regex.*;
 
 import com.sim1.chantmasternew.gabc.modifier.Clef;
 import com.sim1.chantmasternew.gabc.modifier.Mora;
+import com.sim1.chantmasternew.gabc.modifier.Shifter;
 import com.sim1.chantmasternew.gabc.modifier.Virgo;
 import com.sim1.chantmasternew.gabc.neume.Clivis;
 import com.sim1.chantmasternew.gabc.neume.Empty;
@@ -18,30 +19,30 @@ import com.sim1.chantmasternew.gabc.neume.Punctum;
 
 
 
-public class Regex {
+public class GabcTranslator {
 	
 	public static String header, chantDataString, chantName;
 	
 	
 	
 	public static void main(String args[]){
-		boolean atWork = true;
+		boolean atWork = false;
 		
 		String inputFolderFilePath;
 		if(atWork) inputFolderFilePath = "C:\\Users\\smichalik\\Documents\\Eclipse\\gabcTranslator\\in\\";
-		else inputFolderFilePath = "C:\\Users\\Simon\\Documents\\Project 1 Chant Master\\GABC\\in\\";
+		else inputFolderFilePath = "C:\\Users\\Simon\\Documents\\Project 1 Chant Master\\gabcTranslator\\in\\";
 				
 		String outputFolderFilePath;
 		if(atWork) outputFolderFilePath = "C:\\Users\\smichalik\\Documents\\Eclipse\\gabcTranslator\\outCae\\";
-		else outputFolderFilePath = "C:\\Users\\Simon\\Documents\\Project 1 Chant Master\\GABC\\outCae\\";
+		else outputFolderFilePath = "C:\\Users\\Simon\\Documents\\Project 1 Chant Master\\gabcTranslator\\outCae\\";
 		
 		String outputFullFolderFilePath;
 		if(atWork) outputFullFolderFilePath = "C:\\Users\\smichalik\\Documents\\Eclipse\\gabcTranslator\\out\\";
-		else outputFullFolderFilePath = "C:\\Users\\Simon\\Documents\\Project 1 Chant Master\\GABC\\out\\";
+		else outputFullFolderFilePath = "C:\\Users\\Simon\\Documents\\Project 1 Chant Master\\gabcTranslator\\out\\";
 		
 		File folder = new File(inputFolderFilePath);
 		File[] listOfFiles = folder.listFiles();
-		Regex regex = new Regex();
+		GabcTranslator regex = new GabcTranslator();
 		GABCConverter converter = new GABCConverter();
 		ArrayList<String> fileNames = new ArrayList();
 
@@ -136,6 +137,11 @@ public class Regex {
 								sn.addModifier(mod);
 								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								break;
+							case 'q': // virgo
+								mod = new Shifter(sn, sn.pos.length - 1);
+								sn.addModifier(mod);
+								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+								break;
 							case 'w':  // quilisma
 								//mod = new Virgo(sn, sn.pos.length - 1);
 								//sn.setModifier(mod);
@@ -179,7 +185,13 @@ public class Regex {
 							
 						} else {
 							int pos = staffPosToInt(cur);
+							if(sn.endSubNeumeHere){
+								sn = new Punctuation('/');
+								neumes.get(i).subNeumes.add(sn);
+								neumes.get(i).subNeumes.add(sn);
+							}
 							switch (sn.name) {
+							case PUNCTUATION:
 							case EMPTY:
 								sn = new Punctum(pos);
 								neumes.get(i).subNeumes.add(sn);
@@ -196,6 +208,10 @@ public class Regex {
 									sn.modifiers = tempMods;
 									GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								} else {
+									// if staffPos same as prev, add spaces then punctum
+									sn = new Punctuation('/');
+									neumes.get(i).subNeumes.add(sn);
+									neumes.get(i).subNeumes.add(sn);
 									sn = new Punctum(pos);
 									neumes.get(i).subNeumes.add(sn);
 								}
@@ -203,10 +219,6 @@ public class Regex {
 							case CLIVIS:
 								break;
 							case PODATUS:
-								break;
-							case PUNCTUATION:
-								sn = new Punctum(pos);
-								neumes.get(i).subNeumes.add(sn);
 								break;
 							default:
 								break;

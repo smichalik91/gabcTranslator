@@ -9,6 +9,7 @@ import java.util.regex.*;
 
 import com.sim1.chantmasternew.gabc.modifier.Clef;
 import com.sim1.chantmasternew.gabc.modifier.Mora;
+import com.sim1.chantmasternew.gabc.modifier.Quilisma;
 import com.sim1.chantmasternew.gabc.modifier.Shifter;
 import com.sim1.chantmasternew.gabc.modifier.Virgo;
 import com.sim1.chantmasternew.gabc.neume.Clivis;
@@ -143,9 +144,9 @@ public class GabcTranslator {
 								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								break;
 							case 'w':  // quilisma
-								//mod = new Virgo(sn, sn.pos.length - 1);
-								//sn.setModifier(mod);
-								//GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+								mod = new Quilisma(sn, sn.pos.length - 1);
+								sn.addModifier(mod);
+								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								break;
 							case 'x': // flat
 								break;

@@ -3,19 +3,21 @@ package com.sim1.chantmasternew.gabc.modifier;
 import com.sim1.chantmasternew.gabc.GModifier;
 import com.sim1.chantmasternew.gabc.GSubNeume;
 
-public class Shifter extends GModifier{
-
-	public Shifter(GSubNeume subNeumeToModify, int posInSubNeume){
+public class Quilisma extends GModifier {
+	
+	public Quilisma(GSubNeume subNeumeToModify, int posInSubNeume){
 		subNeume = subNeumeToModify;
 		index = posInSubNeume;
-		type = Type.SHIFTER;
+		type = Type.MEXGROUP1;
 		setPriority();
-		replacePunctum = false;
+		replacePunctum = true;
+		subNeume.endSubNeumeHere = true;
 	}
 	
 	
 	public String getOutput(){
-		String out = "";
+		String out = GSubNeume.cStaff[subNeume.pos[index]] + "q";
 		return out;
 	}
+
 }

@@ -9,7 +9,7 @@ public class Virgo extends GModifier {
 		subNeume = subNeumeToModify;
 		index = posInSubNeume;
 		type = Type.MEXGROUP1;
-		super.setPriority();
+		setPriority();
 		replacePunctum = true;
 		subNeume.endSubNeumeHere = true;
 	}

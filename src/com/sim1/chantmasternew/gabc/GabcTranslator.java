@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.regex.*;
 
 import com.sim1.chantmasternew.gabc.modifier.Clef;
+import com.sim1.chantmasternew.gabc.modifier.HorizEpizema;
 import com.sim1.chantmasternew.gabc.modifier.Mora;
 import com.sim1.chantmasternew.gabc.modifier.Quilisma;
 import com.sim1.chantmasternew.gabc.modifier.Shifter;
@@ -131,6 +132,10 @@ public class GabcTranslator {
 								sn.addModifier(mod);
 								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								break;
+							case '_': // horizontal epizema
+								mod = new HorizEpizema(sn, sn.pos.length - 1);
+								sn.addModifier(mod);
+								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 							case ' ':
 								break;
 							case 'v': // virgo
@@ -138,7 +143,7 @@ public class GabcTranslator {
 								sn.addModifier(mod);
 								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								break;
-							case 'q': // virgo
+							case 'q': // shifter
 								mod = new Shifter(sn, sn.pos.length - 1);
 								sn.addModifier(mod);
 								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.sim1.chantmasternew.gabc.GModifier;
 import com.sim1.chantmasternew.gabc.GModifier.Type;
 import com.sim1.chantmasternew.gabc.GSubNeume;
+import com.sim1.chantmasternew.gabc.modifier.HorizEpizema;
 
 // Neume with two positions: LOW then HIGH
 public class Podatus extends GSubNeume {
@@ -62,6 +63,7 @@ public String getOutput(){
 				if(mod.index != 0 || !mod.replacePunctum) out += cStaff[pos[0]] + "p";
 				// then add all modifiers' outputs
 				while(mod.index == 0){
+					if(mod.getClass() == HorizEpizema.class) ((HorizEpizema) mod).setAboveNeume(false);
 					out += mod.getOutput();
 					i++;
 					if(i < modifiers.size()) mod = modifiers.get(i);

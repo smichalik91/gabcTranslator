@@ -11,7 +11,6 @@ public class Quilisma extends GModifier {
 		type = Type.MEXGROUP1;
 		setPriority();
 		replacePunctum = true;
-		subNeume.endSubNeumeHere = true;
 	}
 	
 	

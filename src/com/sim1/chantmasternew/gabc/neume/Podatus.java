@@ -10,6 +10,8 @@ import com.sim1.chantmasternew.gabc.modifier.HorizEpizema;
 // Neume with two positions: LOW then HIGH
 public class Podatus extends GSubNeume {
 	
+	private HorizEpizema aHorizEpizema;
+	
 	public Podatus(int staffpos1, int staffpos2){
 		name = Name.PODATUS;
 		modifiers = new ArrayList<>();
@@ -17,6 +19,9 @@ public class Podatus extends GSubNeume {
 		pos[0] = staffpos1;
 		pos[1] = staffpos2;
 		containsShifter = new boolean[2];
+		
+		// for use in comparing
+		aHorizEpizema = new HorizEpizema(this, 0);//.getClass();
 	}
 	
 public String getOutput(){
@@ -50,9 +55,13 @@ public String getOutput(){
 				if(modifiers.get(k).replacePunctum) hasReplacingMods = true;
 			}
 			if(!hasReplacingMods) {
-				System.out.println("!hasReplacingMods");
+				System.out.println("Does not have replacing Mods");
 				out += cStaff[pos[0]] + cStaff[pos[1]] + "P";
-				for(int k = 0; k < modifiers.size(); k++) out += modifiers.get(k).getOutput();
+				for(int k = 0; k < modifiers.size(); k++) {
+					mod = modifiers.get(k);
+					if(mod.index == 0 && mod.getClass() == HorizEpizema.class) ((HorizEpizema) mod).setAboveNeume(false);
+					out += mod.getOutput();
+				}
 			} 
 			
 			// if there is a modifier that is a SHIFTER or 'replacePunctum'
@@ -63,6 +72,8 @@ public String getOutput(){
 				if(mod.index != 0 || !mod.replacePunctum) out += cStaff[pos[0]] + "p";
 				// then add all modifiers' outputs
 				while(mod.index == 0){
+					// if there is a horizontal epizema on the bottom tone of the podatus,
+					// put it underneath the glyph
 					if(mod.getClass() == HorizEpizema.class) ((HorizEpizema) mod).setAboveNeume(false);
 					out += mod.getOutput();
 					i++;

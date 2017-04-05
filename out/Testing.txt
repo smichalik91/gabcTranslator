@@ -4,4 +4,4 @@
 dg(14P) dqg(1p14X4p) d.qg.(1p1.14X4p4.) de(12P) dqe(1p2p) dve(1v--2p) d.ve.v(1v1.--2v2.) (||)
 gd(41C) dqg(41X4p41X1p) g.qd.(41X4p4.41X1p1.) ed(21C) eqd(21X2p21X1p) evd(2v--1p) e.vd.v(2v2.--1v1.) ee(2p--2p) e.e(2p2.--2p) (||)
 dwe(1q2P) bwf(AqA3X3P) ewd(2q21X1p) dew(1p12X2q) edw(21X2p1q) (||)
-d_e_(12P1H2H) e_d(21X2p2H21X1p) cf_(03P3H)
+d_e_(12P1h2H) dw_e(1q1h2P)

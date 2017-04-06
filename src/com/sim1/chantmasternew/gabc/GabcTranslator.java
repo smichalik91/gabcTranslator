@@ -11,6 +11,7 @@ import com.sim1.chantmasternew.gabc.modifier.Clef;
 import com.sim1.chantmasternew.gabc.modifier.HorizEpizema;
 import com.sim1.chantmasternew.gabc.modifier.Mora;
 import com.sim1.chantmasternew.gabc.modifier.Quilisma;
+import com.sim1.chantmasternew.gabc.modifier.Rhombus;
 import com.sim1.chantmasternew.gabc.modifier.Shifter;
 import com.sim1.chantmasternew.gabc.modifier.Virgo;
 import com.sim1.chantmasternew.gabc.neume.Clivis;
@@ -166,10 +167,10 @@ public class GabcTranslator {
 								//sn.setModifier(mod);
 								//GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 								break;
-							case 's':  // rhombus
-								//mod = new Virgo(sn, sn.pos.length - 1);
-								//sn.setModifier(mod);
-								//GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+							case 's':  // curly rhombus
+								mod = new Rhombus(sn, sn.pos.length - 1);
+								sn.addModifier(mod);
+								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 							case '1':
 							case '2':
 							case '3':
@@ -185,9 +186,16 @@ public class GabcTranslator {
 							}
 
 						} else if(rhombus(cur) != -99) { // rhombus
-							//mod = new Virgo(sn, sn.pos.length - 1);
-							//sn.setModifier(mod);
-							//GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+							if(sn.endSubNeumeHere){
+								sn = new Punctuation('/');
+								neumes.get(i).subNeumes.add(sn);
+								neumes.get(i).subNeumes.add(sn);
+							}
+							sn = new Punctum(rhombus(cur));
+							neumes.get(i).subNeumes.add(sn);
+							mod = new Rhombus(sn, sn.pos.length - 1);
+							sn.addModifier(mod);
+							GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
 							
 						} else {
 							int pos = staffPosToInt(cur);

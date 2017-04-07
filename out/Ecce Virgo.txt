@@ -4,4 +4,4 @@ mode:1;
 book:Graduale O.P. (B2P), 1950, p. 23;
 transcriber:Andrew Hinkley;
 %%
-(7d) Ec(1p)ce(13P) Vir(34P)go(1p) (||) con(02P)cí(45P)pi(43C)et,(32C) (;) et(02P) pá(45P--7p--78P)ri(45P)et(5p) fí(5p)li(5p67P)um:(5p) (|) et(54C) vo(67P)cá(54C)bi(65C)tur(45P6v--65C) (;) no(32C)men(3p) e(64C56P)jus(54C) (;) Em(34P-31C)má(13P45P)nu(3v--2n--1n)el.(1p) (||)
+(7d) Ec(1p)ce(13P) Vir(34P)go(1p) (||) con(02P)cí(45P)pi(43C)et,(32C) (;) et(02P) pá(45P''7p''78P)ri(45P)et(5p) fí(5p)li(5p67P)um:(5p) (|) et(54C) vo(67P)cá(54C)bi(65C)tur(45P6v''65C) (;) no(32C)men(3p) e(64C56P)jus(54C) (;) Em(34P'31C)má(13P45P)nu(3v'2n1n)el.(1p) (||)

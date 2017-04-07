@@ -116,6 +116,19 @@ public class GabcTranslator {
 						else couldBeClef = false;
 						if(rhombus(cur) == -99 && staffPosToInt(cur) == -99) // if it's not a rhombus or a staffPos
 						{
+							// to handle the shortcut "gsss" to signify "gsgsgs"
+							if(cur == prev && !doubleExcluded(cur)) {
+								tempMods = sn.modifiers;
+								sn.modifiers = new ArrayList<GModifier>();
+								neumes.get(i).subNeumes.add(sn);
+								sn.modifiers = tempMods;
+//								if(sn.endSubNeumeHere) {
+//									GSubNeume temp = new Punctuation('/');
+//									neumes.get(i).subNeumes.add(temp);
+//									neumes.get(i).subNeumes.add(temp);
+//								}
+							}
+							
 							switch (cur) {
 							case '!':
 								sn = new Empty();
@@ -124,6 +137,7 @@ public class GabcTranslator {
 							case '\'':
 							case '/':
 							case ':':
+							case ' ':
 								sn = new Punctuation(cur);
 								neumes.get(i).subNeumes.add(sn);
 								sn = new Empty();
@@ -137,7 +151,6 @@ public class GabcTranslator {
 								mod = new HorizEpizema(sn, sn.pos.length - 1);
 								sn.addModifier(mod);
 								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
-							case ' ':
 								break;
 							case 'v': // virgo
 								mod = new Virgo(sn, sn.pos.length - 1);
@@ -171,6 +184,7 @@ public class GabcTranslator {
 								mod = new Rhombus(sn, sn.pos.length - 1);
 								sn.addModifier(mod);
 								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+								break;
 							case '1':
 							case '2':
 							case '3':
@@ -188,8 +202,7 @@ public class GabcTranslator {
 						} else if(rhombus(cur) != -99) { // rhombus
 							if(sn.endSubNeumeHere){
 								sn = new Punctuation('/');
-								neumes.get(i).subNeumes.add(sn);
-								neumes.get(i).subNeumes.add(sn);
+								if(mod.getClass() != Rhombus.class) neumes.get(i).subNeumes.add(sn);
 							}
 							sn = new Punctum(rhombus(cur));
 							neumes.get(i).subNeumes.add(sn);
@@ -307,6 +320,22 @@ public class GabcTranslator {
 		
 	}
 	
+	private static boolean doubleExcluded(char in) {
+		switch (in) {
+		case '!':
+		case ';':
+		case '\'':
+		case '/':
+		case ':':
+		case ' ': 
+		case 'r':
+		case '.':
+			return true;
+		default:
+			return false;
+		}
+	}
+
 	private static int staffPosToInt(char in){
 		int x = in;
 		if(x > 96 && x < 110) x += -97;

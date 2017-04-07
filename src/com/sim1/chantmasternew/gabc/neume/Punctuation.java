@@ -18,17 +18,22 @@ public class Punctuation extends GSubNeume {
 	public String getOutput(){
 		out = "";
 		switch (input) {
-		case ';':
+		case ';':  // centered half vertical bar
 			out = ";";
 			break;
-		case ':':
+		case ':':  // full vertical bar
 			out = "|";
 			break;
-		case ',':
+		case ',':  // small bar at top of staff
 			out = "+";
 			break;
-		case '/':
-			out = "-";
+		case '/':  // quarter space
+			out = "'";
+			break;
+		case ' ':  // half space
+			out = "=";
+			break;
+		default:
 			break;
 		}
 		return out;

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.*;
 
+import com.sim1.chantmasternew.gabc.GSubNeume.Name;
 import com.sim1.chantmasternew.gabc.modifier.Clef;
 import com.sim1.chantmasternew.gabc.modifier.HorizEpizema;
 import com.sim1.chantmasternew.gabc.modifier.Mora;
@@ -117,87 +118,89 @@ public class GabcTranslator {
 						if(rhombus(cur) == -99 && staffPosToInt(cur) == -99) // if it's not a rhombus or a staffPos
 						{
 							// to handle the shortcut "gsss" to signify "gsgsgs"
-							if(cur == prev && !doubleExcluded(cur)) {
-								tempMods = sn.modifiers;
-								sn.modifiers = new ArrayList<GModifier>();
+							if(sn.name == Name.PUNCTUM && cur == prev && !shortcutExcluded(cur)) {
+								//tempMods = sn.modifiers;
+								//sn.modifiers = new ArrayList<GModifier>();
+								GSubNeume punct = new Punctuation('/');
+								neumes.get(i).subNeumes.add(punct);
+								neumes.get(i).subNeumes.add(punct);
 								neumes.get(i).subNeumes.add(sn);
-								sn.modifiers = tempMods;
-//								if(sn.endSubNeumeHere) {
-//									GSubNeume temp = new Punctuation('/');
-//									neumes.get(i).subNeumes.add(temp);
-//									neumes.get(i).subNeumes.add(temp);
-//								}
-							}
-							
-							switch (cur) {
-							case '!':
-								sn = new Empty();
-								break;
-							case ';':
-							case '\'':
-							case '/':
-							case ':':
-							case ' ':
-								sn = new Punctuation(cur);
-								neumes.get(i).subNeumes.add(sn);
-								sn = new Empty();
-								break;
-							case '.': // mora
-								mod = new Mora(sn, sn.pos.length - 1);
-								sn.addModifier(mod);
-								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
-								break;
-							case '_': // horizontal epizema
-								mod = new HorizEpizema(sn, sn.pos.length - 1);
-								sn.addModifier(mod);
-								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
-								break;
-							case 'v': // virgo
-								mod = new Virgo(sn, sn.pos.length - 1);
-								sn.addModifier(mod);
-								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
-								break;
-							case 'q': // shifter
-								mod = new Shifter(sn, sn.pos.length - 1);
-								sn.addModifier(mod);
-								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
-								break;
-							case 'w':  // quilisma
-								mod = new Quilisma(sn, sn.pos.length - 1);
-								sn.addModifier(mod);
-								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
-								break;
-							case 'x': // flat
-								break;
-							case 'o':
-								break;
-							case '<':
-								break;
-							case '~':
-								break;
-							case '>':  // pes
-								//mod = new Virgo(sn, sn.pos.length - 1);
-								//sn.setModifier(mod);
-								//GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
-								break;
-							case 's':  // curly rhombus
-								mod = new Rhombus(sn, sn.pos.length - 1);
-								sn.addModifier(mod);
-								GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
-								break;
-							case '1':
-							case '2':
-							case '3':
-							case '4':
-								if(couldBeClef) { // clef
-									mod = new Clef(sn, sn.pos.length - 1, cur);
+								//sn.modifiers = tempMods;
+							} else {
+								switch (cur) {
+								case '!':
+									sn = new Empty();
+									break;
+								case ';':
+								case '\'':
+								case '/':
+								case ':':
+								case ' ':
+									sn = new Punctuation(cur);
+									neumes.get(i).subNeumes.add(sn);
+									sn = new Empty();
+									break;
+								case '.': // mora
+									mod = new Mora(sn, sn.pos.length - 1);
 									sn.addModifier(mod);
 									GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+									break;
+								case '_': // horizontal epizema
+									mod = new HorizEpizema(sn, sn.pos.length - 1);
+									sn.addModifier(mod);
+									GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+									break;
+								case 'v': // virgo
+									mod = new Virgo(sn, sn.pos.length - 1);
+									sn.addModifier(mod);
+									GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+									break;
+								case 'q': // shifter
+									mod = new Shifter(sn, sn.pos.length - 1);
+									sn.addModifier(mod);
+									GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+									break;
+								case 'w':  // quilisma
+									mod = new Quilisma(sn, sn.pos.length - 1);
+									sn.addModifier(mod);
+									GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+									break;
+								case 'V': // clivis minor
+									break;
+								case 'x': // flat
+									break;
+								case 'o':
+									break;
+								case '<':
+									break;
+								case '~':
+									break;
+								case '>':  // pes
+									//mod = new Virgo(sn, sn.pos.length - 1);
+									//sn.setModifier(mod);
+									//GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+									break;
+								case 's':  // curly rhombus
+									mod = new Rhombus(sn, sn.pos.length - 1);
+									sn.addModifier(mod);
+									GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+									break;
+								case '1':
+								case '2':
+								case '3':
+								case '4':
+									if(couldBeClef) { // clef
+										mod = new Clef(sn, sn.pos.length - 1, cur);
+										sn.addModifier(mod);
+										GNeume.replaceLastInSubNeumes(neumes.get(i).subNeumes, sn);
+									}
+									break;
+								default:
+									break;
 								}
-								break;
-							default:
-								break;
 							}
+							
+							
 
 						} else if(rhombus(cur) != -99) { // rhombus
 							if(sn.endSubNeumeHere){
@@ -320,7 +323,7 @@ public class GabcTranslator {
 		
 	}
 	
-	private static boolean doubleExcluded(char in) {
+	private static boolean shortcutExcluded(char in) {
 		switch (in) {
 		case '!':
 		case ';':
@@ -330,6 +333,7 @@ public class GabcTranslator {
 		case ' ': 
 		case 'r':
 		case '.':
+		case '_':
 			return true;
 		default:
 			return false;

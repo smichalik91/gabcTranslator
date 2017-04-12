@@ -121,9 +121,9 @@ public class GabcTranslator {
 							if(sn.name == Name.PUNCTUM && cur == prev && !shortcutExcluded(cur)) {
 								//tempMods = sn.modifiers;
 								//sn.modifiers = new ArrayList<GModifier>();
-								GSubNeume punct = new Punctuation('/');
-								neumes.get(i).subNeumes.add(punct);
-								neumes.get(i).subNeumes.add(punct);
+								GSubNeume p = new Punctuation('/');
+								neumes.get(i).subNeumes.add(p);
+								neumes.get(i).subNeumes.add(p);
 								neumes.get(i).subNeumes.add(sn);
 								//sn.modifiers = tempMods;
 							} else {

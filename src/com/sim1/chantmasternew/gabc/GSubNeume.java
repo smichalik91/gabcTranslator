@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public abstract class GSubNeume {
 	
 	public enum Name {
-		EMPTY, PUNCTUATION, PUNCTUM, PODATUS, CLIVIS
+		EMPTY, PUNCTUATION, PUNCTUM, PODATUS, CLIVIS, TORCULUS, PORRECTUS
 	}
 	public Name name;
 	

@@ -8,7 +8,6 @@ public class GABCNeume {
 	public ArrayList<Integer> staffPos;
 	public String in;
 	public String out;
-	public Test ref2;
 
 	
 	GABCNeume(String gabc_in)
@@ -92,12 +91,10 @@ public class GABCNeume {
 			k++;
 		}
 
-		Test temp4 = new Test("Dummy");
-		
 		//GABCSubNeumes[] subNeumes = new GABCSubNeumes[index + 1];
 		for(k = 0; k < index + 1; k++)
 		{
-			subNeumesTemp.add(new GABCSubNeume(subData[k],temp4));
+			subNeumesTemp.add(new GABCSubNeume(subData[k]));
 		}
 
 		return subNeumesTemp;	

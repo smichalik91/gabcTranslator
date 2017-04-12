@@ -10,10 +10,8 @@ public class GABCSubNeume {
 
 	final String[] cStaffPos = new String[]{"B","A","0","1","2","3","4","5","6","7","8","9","Z"};
 	
-	GABCSubNeume(String gabc_in, Test testSub)
+	GABCSubNeume(String gabc_in)
 	{
-		Test d = testSub;
-		d.testString += " World";
 		
 		in = gabc_in;
 		out = "";

@@ -7,28 +7,29 @@ import com.sim1.chantmasternew.gabc.GModifier.Type;
 import com.sim1.chantmasternew.gabc.GSubNeume;
 import com.sim1.chantmasternew.gabc.modifier.HorizEpizema;
 
-// Neume with two positions: LOW then HIGH
-public class Podatus extends GSubNeume {
+// Neume with three positions: LOW then HIGH then LOW
+public class Torculus extends GSubNeume {
 	
-	public Podatus(int staffpos1, int staffpos2){
-		name = Name.PODATUS;
+	public Torculus(int staffpos1, int staffpos2, int staffpos3){
+		name = Name.TORCULUS;
 		modifiers = new ArrayList<>();
-		pos = new int[2];
+		pos = new int[3];
 		pos[0] = staffpos1;
 		pos[1] = staffpos2;
-		containsShifter = new boolean[2];
+		pos[3] = staffpos3;
+		containsShifter = new boolean[3];
+		
 	}
 	
 public String getOutput(){
 	
 // --------------------- With NO Modifiers -------------------------
 		if(modifiers.size() == 0) {
-			if(pos[1] - pos[0] < 5) out = cStaff[pos[0]] + cStaff[pos[1]] + "P";
-			else {
-				out = cStaff[pos[0]] + "p";
-				out += cStaff[pos[0]] + cStaff[pos[1]] + "X";
-				out += cStaff[pos[1]] + "P";
-			}
+			out = cStaff[pos[0]] + "p";
+			out += cStaff[pos[0]] + cStaff[pos[1]] + "X";
+			out += cStaff[pos[1]] + "p";
+			out += cStaff[pos[1]] + cStaff[pos[2]] + "X";
+			out += cStaff[pos[2]] + "p";
 		}
 		
 // --------------------- WITH Modifiers -------------------------

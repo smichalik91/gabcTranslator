@@ -432,7 +432,6 @@ public class GABCConverter {
 			k++;
 		}
 
-		Test temp4 = new Test("Dummy");
 		
 		//GABCSubNeumes[] subNeumes = new GABCSubNeumes[index + 1];
 		for(k = 0; k < index + 1; k++)
